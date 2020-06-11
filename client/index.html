@@ -3,14 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <meta name="google-signin-client_id" content="728101544811-4jtjpuoo8fnb1acf3m97scpjno5t97nn.apps.googleusercontent.com">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <title>Makan Apa</title>
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Makan Apa ?</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item notlogged-in">
+          <a class="nav-link" href="#loginForm" onclick="showLogin(event)">Login</a>
+        </li>
+        <li class="nav-item notlogged-in">
+          <a class="nav-link" href="#registerForm" onclick="showRegister(event)">Register</a>
+        </li>
+        <li class="nav-item logged-in">
+          <a class="nav-link" href="#dashboardPage" onclick="showDashboard(event)">Dashboard</a>
+        </li>
+        <li class="nav-item logged-in">
+          <a class="nav-link" href="#logout" onclick="logout(event)">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- login form -->
+  <div class="container">
+    <section id="login-page">
+      <div style="position: relative; margin: 0 auto; width: 500px; top: 200px;">
+          <form onsubmit="login(event)">
+              <div id="login" class="form-group">
+                  <label for="email">email: </label>
+                  <input type="email" class="form-control" id="email-login" aria-describedby="emailHelp">
+                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                </div>
+                <div class="form-group">
+                  <label for="password">Password: </label>
+                  <input type="password" class="form-control" id="password-login">
+                </div>
+                <div style="align-items: center; justify-content: center;">
+                  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+      </div>
+      </section>
+  </div>
   
+    <!-- Register Formm -->
+    <div class="container">
+      <section  id="register-page">
+        <div style="position: relative; margin: 0 auto; width: 500px; top: 200px;">
+            <form onsubmit="register(event)">
+                <div id="register" class="form-group">
+                    <label for="email">email: </label>
+                    <input type="email" class="form-control" id="email-register" aria-describedby="emailHelp">
+                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password: </label>
+                    <input type="password" class="form-control" id="password-register">
+                  </div>
+                  <button type="submit" class="btn btn-primary">register</button>
+            </form>
+        </div>
+        </section>
+    </div>
+    <!-- homepage -->
+    <div class="container">
+      <section id="homepage">
+          <h1>INI HOME PAGE</h1>
+    </div>
   <!-- script -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
