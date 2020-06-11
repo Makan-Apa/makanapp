@@ -25,7 +25,7 @@
           <a class="nav-link" href="#dashboardPage" onclick="showDashboard(event)">Dashboard</a>
         </li>
         <li class="nav-item logged-in">
-          <a class="nav-link" href="#logout" onclick="logout(event)">Logout</a>
+          <a class="nav-link" href="" onclick="logout(event)">Logout</a>
         </li>
       </ul>
     </div>
@@ -34,6 +34,7 @@
   <div class="container">
     <section id="login-page">
       <div style="position: relative; margin: 0 auto; width: 500px; top: 200px;">
+        <h1>Login Page</h1>
           <form onsubmit="login(event)">
               <div id="login" class="form-group">
                   <label for="email">email: </label>
@@ -58,6 +59,7 @@
     <div class="container">
       <section  id="register-page">
         <div style="position: relative; margin: 0 auto; width: 500px; top: 200px;">
+          <h1>Register Page</h1>
             <form onsubmit="register(event)">
                 <div id="register" class="form-group">
                     <label for="email">email: </label>
@@ -74,10 +76,16 @@
         </section>
     </div>
     <!-- homepage -->
-    <div class="container">
-      <section id="homepage">
+    <div class="container" id="homepage">
+      <div class="row no-gutters">
+        <div class="col-sm-6 col-md-8" id = "random-menu"></div>
+        <div class="col-6 col-md-4" id="weather"></div>
+      </div>
+      
           <h1>INI HOME PAGE</h1>
+               
     </div>
+    
   <!-- script -->
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
