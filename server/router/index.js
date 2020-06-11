@@ -1,8 +1,10 @@
 const router = require('express').Router();
+
 const userRouter = require('./user.js');
 const dataRouter = require('./data.js');
 const menuRouter = require('./menu');
 const authentication = require('../middlewares/authentication.js');
+
 
 router.get('/', () => {
   console.log('Welcome to MakanApp')
