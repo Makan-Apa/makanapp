@@ -3,7 +3,6 @@ const {User} = require('../models');
 
 function authentication(req, res, next) {
   let token = req.headers.token;
-  console.log(token);
 
   try {
     let check = verifyToken(token);

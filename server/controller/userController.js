@@ -4,6 +4,7 @@ const {User} = require('../models');
 const {compare} = require('../helpers/bcrypt.js');
 const {userToken} = require('../helpers/jwt.js');
 const verificationToken = require('../helpers/googleOauth.js')
+const axios = require('axios')
 
 class UserController {
   static register(req, res, next) {
@@ -31,11 +32,11 @@ class UserController {
     })
       .then(result => {
         if (result) {
-          let check = compare(password, result.password);
+          let check = compare(password, result.dataValues.password);
           if (check) {
             let token = userToken({
-              id: result.id,
-              email: result.email
+              id: result.dataValues.id,
+              email: result.dataValues.email
             })
             res.status(200).json({
               token
@@ -53,6 +54,7 @@ class UserController {
           }
         } 
       })
+
       .catch(err => {
         next(err)
       })
