@@ -2,7 +2,7 @@
 
 ```
 Guides: 
-- Login: Default landing page, after login user will redirect to the Main Page where it will shows all ToDo lists that were created by current user.
+- Login: Default landing page, after login user will redirect to the Main Page where it will shows all Restaurant lists nearby Hacktiv8 Pondok Indah Campus.
 - Register: If user doesn't have account, they can create the account, after register's complete, user will be automatically directed to login page.
 ```
 
