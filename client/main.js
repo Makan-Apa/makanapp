@@ -12,12 +12,13 @@ $(document).ready(function(){
 function auth() {
     if (localStorage.token)  {
       $('.random-menu').remove()
+      $('#weather-content').remove();
       $('#register-page').hide();
       $('#login-page').hide();
       $('.notlogged-in').hide();
       $('.logged-in').show();
       $('#homepage').show();
-      $('#random-menu').show()
+      $('#random-menu').show();
       randomMenu()
       weather()
       fetchresto()
@@ -28,7 +29,7 @@ function auth() {
       $('#homepage').hide();
       $('.notlogged-in').show();
       $('.logged-in').hide();
-      $('#random-menu').hide()
+    //   $('#random-menu').hide()
     }
   }
 
@@ -132,9 +133,9 @@ function logout(){
 }
 
 function randomMenu(){
-    console.log('massuk eko')
+    // console.log('massuk eko')
     $.ajax({
-        method: 'GET',
+        method: 'get',
         url: baseUrl + '/whats-your-menu',
         headers:{
             token: localStorage.token
@@ -142,6 +143,7 @@ function randomMenu(){
     })
         .done(data=>{
             console.log(data)
+            $('#random-menu').empty();
             let randomMenu = `
                 <div class="container mt-3 p-4 random-menu">
                     <h1 style="text-align: left;">${data.name}</h1>
@@ -150,7 +152,7 @@ function randomMenu(){
                             category : ${data.category}
                         </div>
                         <div class="col-md-3">
-                            <img style="height:100%; width: 100%;" src="${data.imgUrl}" alt="image-menu">
+                            <a href = '${data.ytubeUrl}' target=_blank><img style="height:100%; width: 100%; float:right;" src="${data.imgUrl}" alt="image-menu"></a>       
                         </div>    
                     </div>    
                 </div>
@@ -171,11 +173,24 @@ function weather(){
         }
     })
         .done(cuaca=>{
+            $('#weather').empty();
             let html = `
-            <div id = "weather">
-            <p>${cuaca.weather.weather_state_name}</p>
-            <p>${cuaca.weather.applicable_date}</p>
-            <p>${cuaca.weather.the_temp}</p>
+            <div id = "weather-content">
+                <div class="card-body grey lighten-5 rounded-bottom">
+                    <div class="card grey lighten-2" style="background-color: antiquewhite">
+                        <div style="width:100%;" class="card-body pb-0">
+                            <img style="width:80px" class="pb-2 align-items-center" src = "https://www.metaweather.com/static/img/weather/png/64/${cuaca.weather.weather_state_abbr}.png" />
+                            <div class="d-flex justify-content-between">
+                                <p class="mb-0 h5" style="color:">${cuaca.weather.the_temp}&deg;</p>
+                                <p class="mb-0 hour">${cuaca.weather.applicable_date}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card-body pt-0">
+                        <h6 class="font-weight-bold mb-1">Jakarta</h6>
+                        <p class="mb-0">${cuaca.weather.weather_state_name}</p>
+                    </div>    
+                </div>
             </div>
             `
             $('#weather').append(html)
@@ -211,18 +226,16 @@ function fetchresto(){
         data.restaurant.forEach((val , index) => {
             html += `
                 <div class="col-xl-4">
-                <div class="card" style="background-color: antiquewhite;">
-                <div style="max-height: 150px; min-heigth: 150px; overflow: hidden">
-                <img src="${val.img ? val.img : 'resto.jpg'}" style="object-fit: cover; height: 150px; width: 300px"  class="card-img-top" alt="...">
-                </div>
-                <div class="card-body">
-                <p class="card-text">${val.name}</p>
-                <button onclick="showdetail(${index})" type="button" data-toggle="modal"  data-target="#exampleModal" class="btn btn-primary">Show Detail resto</button>
-                </div>
-                </div>
-                </div>
-               
-                
+                    <div class="card" style="background-color: antiquewhite;">
+                        <div style="max-height: 150px; min-heigth: 150px; overflow: hidden">
+                            <img src="${val.img ? val.img : 'resto.jpg'}" style="object-fit: cover; height: 150px; width: 300px"  class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">${val.name}</p>
+                            <button onclick="showdetail(${index})" type="button" data-toggle="modal"  data-target="#exampleModal" class="btn btn-primary">Show Detail</button>
+                        </div>
+                    </div>
+                </div>  
               `
         });
         elmresto.append(html)

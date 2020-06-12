@@ -24,9 +24,6 @@
           <a class="nav-link" href="#registerForm" onclick="showRegister(event)">Register</a>
         </li>
         <li class="nav-item logged-in">
-          <a class="nav-link" href="#dashboardPage" onclick="showDashboard(event)">Dashboard</a>
-        </li>
-        <li class="nav-item logged-in">
           <a class="nav-link" href="" onclick="logout(event)">Logout</a>
         </li>
       </ul>
@@ -47,11 +44,13 @@
                   <label for="password">Password: </label>
                   <input type="password" class="form-control" id="password-login">
                 </div>
+                <button type="submit" class="btn btn-primary">Login</button><br>
+                <div>
+                  <h3>Or, you can sign with: </h3>
+                </div>
                 <div style="align-items: center; justify-content: center;">
                   <div class="g-signin2" data-onsuccess="onSignIn"></div>
                 </div>
-                
-                <button type="submit" class="btn btn-primary">Login</button>
           </form>
       </div>
       </section>
@@ -72,7 +71,7 @@
                     <label for="password">Password: </label>
                     <input type="password" class="form-control" id="password-register">
                   </div>
-                  <button type="submit" class="btn btn-primary">register</button>
+                  <button type="submit" class="btn btn-primary">Register</button>
             </form>
         </div>
         </section>
@@ -102,15 +101,15 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <h3>Alamat:</h3>
+                  <h3>Address: </h3>
                   <p id="restoran-address"></p>
-                  <h3>Waktu Beroprasi:</h3>
+                  <h3>Operation Time: </h3>
                   <p id="restoran-timings"></p>
-                  <h3>Harga Rata-rata</h3>
+                  <h3>Average Price: </h3>
                   <p id="restoran-price"></p>
-                  <h3>Rating</h3>
+                  <h3>Rating: </h3>
                   <p id="restoran-ratings"></p>
-                  <h3>DLL:</h3>
+                  <h3>ETC:</h3>
                   <p id="restoran-etc"></p>
                 </div>
                 <div class="modal-footer">
