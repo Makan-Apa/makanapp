@@ -1,8 +1,12 @@
 const baseUrl = "http://localhost:3000"
+let restoran = []
 
 $(document).ready(function(){
     console.log("massuk")
     auth()
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#restoran-name').text('focus')
+      })
 })
 
 function auth() {
@@ -16,6 +20,7 @@ function auth() {
       $('#random-menu').show()
       randomMenu()
       weather()
+      fetchresto()
 
     } else {
       $('#login-page').show();
@@ -165,7 +170,7 @@ function weather(){
             token: localStorage.token
         }
     })
-        .then(cuaca=>{
+        .done(cuaca=>{
             let html = `
             <div id = "weather">
             <p>${cuaca.weather.weather_state_name}</p>
@@ -179,4 +184,51 @@ function weather(){
             console.log(err.responseJSON)
         })
 } 
+
+function showdetail(index){
+    console.log(index)
+    $('#restoran-name').text(restoran[index].name)
+    $('#restoran-address').text(restoran[index].address)
+    $('#restoran-timings').text(restoran[index].timings)
+    $('#restoran-price').text(restoran[index].averagePrice)
+    $('#restoran-ratings').text(restoran[index].ratings.aggregate_rating)
+    $('#restoran-etc').text(restoran[index].etc)
+}
+
+function fetchresto(){
+    $.ajax({
+        method: 'get',
+        url: baseUrl + "/data/restaurant",
+        headers:{
+            token: localStorage.token
+        }
+    })
+    .done(data =>{
+        console.log(data)
+        let elmresto = $('#kartu')
+        let html = ``
+        restoran = data.restaurant
+        data.restaurant.forEach((val , index) => {
+            html += `
+                <div class="col-xl-4">
+                <div class="card" style="background-color: antiquewhite;">
+                <div style="max-height: 150px; min-heigth: 150px; overflow: hidden">
+                <img src="${val.img ? val.img : 'resto.jpg'}" style="object-fit: cover; height: 150px; width: 300px"  class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                <p class="card-text">${val.name}</p>
+                <button onclick="showdetail(${index})" type="button" data-toggle="modal"  data-target="#exampleModal" class="btn btn-primary">Show Detail resto</button>
+                </div>
+                </div>
+                </div>
+               
+                
+              `
+        });
+        elmresto.append(html)
+    })
+    .fail(err => {
+        console.log(err.responseJSON)
+    })
+}
 

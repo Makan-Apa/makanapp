@@ -1,0 +1,24 @@
+body{
+    background-color: bisque;
+    font-family: 'Bebas Neue', cursive;
+
+}
+
+.kartu{
+    width: auto;
+    height: auto;
+    margin-top: 20px;
+    margin-right: 200px;
+    right: 20px;
+}
+
+.kartu img{
+    width: auto;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card{
+    margin: 20px;
+    font-family: 'Indie Flower', cursive;
+}
